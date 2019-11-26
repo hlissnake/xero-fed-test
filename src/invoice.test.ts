@@ -10,13 +10,17 @@ it('Create Invoice With Multiple Items And Quantities', () => {
     expect(invoice.GetTotal()).toBe(67.33);
 });
 
-it('Remove item', () => {
+it('Remove items', () => {
     const invoice = new Invoice();
 
     invoice.AddInvoiceLine(new InvoiceLine(1, 10.21, 1, "Orange"));
     invoice.AddInvoiceLine(new InvoiceLine(2, 10.99, 5, "Banana"));
+    invoice.AddInvoiceLine(new InvoiceLine(3, 4.99, 3, "Apple"));
 
     invoice.RemoveInvoiceLine(1);
+    expect(invoice.GetTotal()).toBe(69.92);
+
+    invoice.RemoveInvoiceLine(3);
     expect(invoice.GetTotal()).toBe(54.95);
 });
 
@@ -28,10 +32,10 @@ it('Merge Invoices', () => {
     const invoiceB = new Invoice();
 
     invoiceB.AddInvoiceLine(new InvoiceLine(2, 5.29, 4, "Orange"));
-    invoiceB.AddInvoiceLine(new InvoiceLine(3, 9.99, 1, "Banana"));
+    invoiceB.AddInvoiceLine(new InvoiceLine(3, 7.99, 1, "Banana"));
 
     invoiceA.MergeInvoices(invoiceB);
-    expect(invoiceA.GetTotal()).toBe(41.36);
+    expect(invoiceA.GetTotal()).toBe(39.36);
 });
 
 it('Clone Invoice', () => {
@@ -41,5 +45,7 @@ it('Clone Invoice', () => {
     invoice.AddInvoiceLine(new InvoiceLine(2, 10.49, 2, "Watermelon"));
 
     const ClonedInvoice = invoice.Clone();
+    expect(ClonedInvoice.InvoiceDate).toBe(invoice.InvoiceDate);
+    expect(ClonedInvoice.InvoiceNumber).toBe(invoice.InvoiceNumber);
     expect(ClonedInvoice.GetTotal()).toBe(25.93);
 });

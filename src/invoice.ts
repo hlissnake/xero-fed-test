@@ -6,13 +6,13 @@ export class Invoice {
 
     InvoiceNumber: string;
 
-    LineItems: InvoiceLine[];
+    LineItems: Array<InvoiceLine>;
 
     constructor(InvoiceDate = new Date(), InvoiceNumber = "", LineItems = []) {
         this.InvoiceDate = InvoiceDate;
         this.InvoiceNumber = InvoiceNumber;
         this.LineItems = LineItems;
-    }
+    };
 
     /**
      * Adds a line to invoice
@@ -46,9 +46,13 @@ export class Invoice {
         newInvoice.LineItems.map((item) => {
             this.AddInvoiceLine(item);
         })
-    }
+    };
 
     Clone(): Invoice {
         return new Invoice(this.InvoiceDate, this.InvoiceNumber, [...this.LineItems]);
     };
+
+    toString() {
+        return `InvoiceDate: ${this.InvoiceDate.toString()} \nInvoiceNumber: ${this.InvoiceNumber} \nLineItems: ${this.LineItems.toString()}`
+    }
 }

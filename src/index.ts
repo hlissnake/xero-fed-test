@@ -1,4 +1,3 @@
-
 /*
     Welcome to the Xero technical excercise!
     ---------------------------------------------------------------------------------
@@ -45,9 +44,7 @@ export function CreateInvoiceWithMultipleItemsAndQuantities() {
     invoice.AddInvoiceLine(new InvoiceLine(2, 5.21, 1, "Orange"));
     invoice.AddInvoiceLine(new InvoiceLine(3, 6.21, 5, "Pineapple"));
 
-    const total = invoice.GetTotal();
-    console.log(total);
-    return total;
+    console.log(invoice.GetTotal());
 }
 
 export function RemoveItem() {
@@ -58,9 +55,7 @@ export function RemoveItem() {
 
     invoice.RemoveInvoiceLine(1);
 
-    const total = invoice.GetTotal();
-    console.log(total);
-    return total;
+    console.log(invoice.GetTotal());
 }
 
 export function MergeInvoices() {
@@ -75,9 +70,7 @@ export function MergeInvoices() {
 
     invoice1.MergeInvoices(invoice2);
 
-    const total = invoice1.GetTotal();
-    console.log(total);
-    return total;
+    console.log(invoice1.GetTotal());
 }
 
 export function CloneInvoice() {
@@ -87,14 +80,11 @@ export function CloneInvoice() {
     invoice.AddInvoiceLine(new InvoiceLine(2, 10.49, 2, "Watermelon"));
 
     const ClonedInvoice = invoice.Clone();
-
-    const total = ClonedInvoice.GetTotal();
-    console.log(total);
-    return total;
+    console.log(ClonedInvoice.GetTotal());
 }
 
 export function InvoiceToString() {
-    const invoice = new Invoice(
+    const invoice: Invoice = new Invoice(
         new Date(),
         "1000",
         [
