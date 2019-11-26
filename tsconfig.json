@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "esnext",
+    "sourceMap": true,
+    "target": "es5",
+    "jsx": "react",
+    "lib": ["es2015", "es2016", "es2017", "es2018", "dom"]
+  }
+}
