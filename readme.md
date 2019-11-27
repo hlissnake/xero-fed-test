@@ -10,6 +10,6 @@ Good luck!
 
 ### This is a TypeScript application. so will need to be installed & compiled.
 
-* `yarn or npm install` dependencies
+* `yarn or npm install` for Install dependencies
 * `yarn / npm start` for Running Node Application
-* `yarn / npm` test for Running Test
+* `yarn / npm test` for Running the Test
