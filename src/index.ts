@@ -91,8 +91,9 @@ export function InvoiceToString() {
             new InvoiceLine(1, 1.99, 20, "Peer")
         ]
     );
+    invoice.AddInvoiceLine(new InvoiceLine(1, 0.99, 5, "Onion"));
 
-    console.log(invoice);
+    console.log(invoice.toString());
 }
 
 Main();

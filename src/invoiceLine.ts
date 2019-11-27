@@ -10,4 +10,15 @@ export class InvoiceLine {
         this.Quantity = Quantity;
         this.Description = Description;
     }
+
+    /**
+     * Deep clone for Invoice line
+     */
+    Clone(): InvoiceLine {
+        return new InvoiceLine(this.InvoiceLineId, this.Cost, this.Quantity, this.Description);
+    }
+
+    toString(): string {
+        return `{InvoiceLineId: ${this.InvoiceLineId}, Cost: ${this.Cost}, Quantity: ${this.Quantity}, Description: ${this.Description}}`;
+    }
 }

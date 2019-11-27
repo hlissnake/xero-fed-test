@@ -23,8 +23,9 @@ export class Invoice {
     };
 
     /**
-     * Removes a line
-    */
+     * Remove a line base on the ID
+     * @param id 
+     */
     RemoveInvoiceLine(id): InvoiceLine[] {
         let itemIndex: number;
         this.LineItems.some((item, index) => {
@@ -33,26 +34,41 @@ export class Invoice {
                 return true;
             }
         });
+
         return this.LineItems.splice(itemIndex, 1);
     };
 
+    /**
+     * Get total cost of all lines
+     */
     GetTotal(): number {
         return this.LineItems.reduce((total, item) => {
             return total + (item.Cost * item.Quantity);
         }, 0);
     };
 
+    /**
+     * Merge a new Invoice into current Invoice
+     * @param newInvoice
+     */
     MergeInvoices(newInvoice): void {
         newInvoice.LineItems.map((item) => {
             this.AddInvoiceLine(item);
         })
     };
 
+    /**
+     * Makes a deep clone of current Invoice
+     */
     Clone(): Invoice {
-        return new Invoice(this.InvoiceDate, this.InvoiceNumber, [...this.LineItems]);
+        return new Invoice(
+            this.InvoiceDate, this.InvoiceNumber,
+            // Deep clone for each LineItem
+            this.LineItems.map(item => item.Clone())
+        );
     };
 
-    toString() {
+    toString(): string {
         return `InvoiceDate: ${this.InvoiceDate.toString()} \nInvoiceNumber: ${this.InvoiceNumber} \nLineItems: ${this.LineItems.toString()}`
     }
 }
